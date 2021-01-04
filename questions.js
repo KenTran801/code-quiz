@@ -8,8 +8,8 @@ var questions = [
 
     {
         questionText: "The condition in an if / else statement is enclosed within ______.",
-        choices: ["Curly Brackets", "Quotes", "Parantheses", "Square Brackets"],
-        rightChoice: "Parantheses"
+        choices: ["Curly Brackets", "Quotes", "Parentheses", "Square Brackets"],
+        rightChoice: "Parentheses"
     },
 
     {
@@ -19,15 +19,15 @@ var questions = [
     },
 
     {
-        questionText: "",
-        choices: [],
-        rightChoice: 
+        questionText: "String values must be enclosed within ______ when being assigned to variables.",
+        choices: ["Curly Brackets", "Quotes", "Commas", "Parentheses"],
+        rightChoice: "Quotes"
     },
 
     {
-        questionText: "",
-        choices: [],
-        rightChoice: 
+        questionText: "A very useful tool for used during development and debugging for printing content to the debugger is:",
+        choices: ["Javascript", "Terminal/Bash", "For loops", "Console log"],
+        rightChoice: "Console log"
     },
 ];
 
