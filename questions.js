@@ -1,3 +1,9 @@
+// variables
+var i=0
+var count = questions.length * 15;
+// Event listener for start button
+var startQuizEl = document.querySelector("#startQuiz");
+
 // Create questions for the quiz
 var questions = [
     {
@@ -30,6 +36,20 @@ var questions = [
         rightChoice: "Console log"
     },
 ];
+
+// Add eventlistener to start button
+startQuizEl.addEventListener("click", function() {
+    startTimer()
+});
+
+function startTimer() {
+    var timer = setInterval(function() {
+        count--
+        if (count === 0) {
+            clearInterval(timer)
+        }
+    }, 1000)
+}
 
 // reccomended
 // this static and determined by dev before someone plays
