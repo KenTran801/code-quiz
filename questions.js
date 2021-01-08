@@ -1,8 +1,15 @@
 // variables
-var i=0
-var count = questions.length * 15;
-// Event listener for start button
+var questionIndex = 0;
+var count = 5;
+var score = 0; 
+
+var remainTimeEl = document.querySelector("#remainTime");
 var startQuizEl = document.querySelector("#startQuiz");
+var quizQuestionsEl = document.querySelector("#quizQuestions");
+var quizChoicesEl = document.querySelector("#quizChoices");
+var storeScoreEl = document.querySelector("#storeScores");
+var scoreBoardEl = document.querySelector("#scoreBoard");
+
 
 // Create questions for the quiz
 var questions = [
@@ -37,19 +44,49 @@ var questions = [
     },
 ];
 
+
 // Add eventlistener to start button
 startQuizEl.addEventListener("click", function() {
     startTimer()
+    genQuizQuestions()
 });
+
+
+// function for timer to countdown to 0
 
 function startTimer() {
     var timer = setInterval(function() {
-        count--
+        count--;
+        remainTimeEl.textContent = "Time remaining = " + count + " seconds";
         if (count === 0) {
-            clearInterval(timer)
+            clearInterval(timer);
+            remainTimeEl.textContent = "Time remaining =  Time is up!";
         }
     }, 1000)
 }
+
+function genQuizQuestions() {
+    // clear data
+    startScreen.innerHTML = "";
+
+    for (var index = 0; index < questions.length; index++) {
+        
+        var userQuestion = questions[questionIndex].questionText;
+        var userChoices = questions[questionIndex].choices;
+        quizQuestionsEl.innerHTML = "<h4>" + userQuestion + "</h4>";
+        quizChoicesEl.innerHTML = "<li>" + userChoices + "</li>";
+  
+    }
+
+
+    
+    // Possibly might work??? Question for tutor on Friday
+
+    // var currentQuestion = questions[questionIndex];
+    // quizQuestionsEl.innerHTML = "<h2>" + currentQuestion.questionText + "</h2>";
+    // quizQuestionsEl.createElement("Button")
+}
+
 
 // reccomended
 // this static and determined by dev before someone plays
