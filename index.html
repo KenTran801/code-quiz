@@ -12,9 +12,9 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body class="bg-secondary">
+<body class=" p-5 mb-2 bg-primary">
   <header class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-    <span class="navbar-brand">Coding Quiz</span>
+    <span class="navbar-brand font-weight-bold">Coding Quiz</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
     </nav>
     <nav class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <ul class="navbar-nav">
-        <span class="navbar-text" id="remainTime">
+        <span class="navbar-text font-weight-bold text-warning" id="remainTime">
           Time Remaining: 80 seconds
         </span>
       </ul>
@@ -34,17 +34,20 @@
   </header>
 
   <main class="jumbotron container my-5">
+    <!-- <div class="navbar-text font-weight-bold text-warning" id="remainTime">
+      Time Remaining: 80 seconds
+    </div> -->
     <div id="startScreen">
-      <h1 class="display-5">Coding Quiz Challenge</h1>
+      <h1 class="display-3 text-center">Coding Quiz Challenge</h1>
       <hr class="my-4">
       <section class="row">
-        <section class="col-sm-12">
-          <p> Try to answer the following code-related questions within the time limit. Keep in mind that
+        <section class="col-sm-12 text-center font-weight-bold">
+          <p> Try to answer the following code-related questions within the given time limit. Keep in mind that
             incorrect answers will penalize your score/time by ten seconds!
           </p>
+          <button type="button" class="btn btn-primary btn-lg" id="startQuiz">Start Quiz</button>
         </section>
       </section>
-      <button type="button" class="btn btn-primary btn-lg " id="startQuiz">Start Quiz</button>
     </div>
 
     <div class="text-center" id="quizQuestions"></div>

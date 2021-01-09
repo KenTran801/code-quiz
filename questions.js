@@ -13,31 +13,31 @@ var buttonEl = document.createElement("div");
 // Create questions for the quiz
 var questions = [
     {
-        questionText: "Commonly used data types DO NOT include which of the following:",
+        questionText: "Question 1: Commonly used data types DO NOT include which of the following.",
         choices: ["Booleans", "Numbers", "Strings", "Alerts"],
         rightChoice: "Alerts"
     },
 
     {
-        questionText: "The condition in an if / else statement is enclosed within ______.",
+        questionText: "Question 2: The condition in an if / else statement is enclosed within ______.",
         choices: ["Curly Brackets", "Quotes", "Parentheses", "Square Brackets"],
         rightChoice: "Parentheses"
     },
 
     {
-        questionText: "Arrays in Javascript can be used to store ______.",
+        questionText: "Question 3: Arrays in Javascript can be used to store ______.",
         choices: ["Numbers and strings", "Other arrays", "Booleans", "All of the above"],
         rightChoice: "All of the above"
     },
 
     {
-        questionText: "String values must be enclosed within ______ when being assigned to variables.",
+        questionText: "Question 4: String values must be enclosed within ______ when being assigned to variables.",
         choices: ["Curly Brackets", "Quotes", "Commas", "Parentheses"],
         rightChoice: "Quotes"
     },
 
     {
-        questionText: "A very useful tool for used during development and debugging for printing content to the debugger is:",
+        questionText: "Question 5: A very useful tool used during development and debugging for printing content to the debugger is.",
         choices: ["Javascript", "Terminal/Bash", "For loops", "Console log"],
         rightChoice: "Console log"
     },
@@ -55,7 +55,7 @@ function startTimer() {
     var timer = setInterval(function () {
         count--;
         remainTimeEl.textContent = "Time remaining = " + count + " seconds";
-        if (count == 0) {
+        if (count <= 0) {
             clearInterval(timer);
             remainTimeEl.textContent = "Time remaining =  Time is up!";
         }
@@ -76,28 +76,29 @@ function genQuizQuestions() {
     userChoices.forEach(function (newItem) {
         var buttonItem = document.createElement("button");
         buttonItem.setAttribute("class", "choice-button");
+        buttonItem.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px")
         buttonItem.textContent = newItem;
         // console.log(buttonItem);
         quizChoicesEl.appendChild(buttonEl);
         buttonEl.appendChild(buttonItem);
     })
 
-    // // click event for choice(s) to check answer
-    // document.querySelectorAll(".choice-button").forEach(function (checkChoice) {
-    //     // console.log(checkChoice);
-    //     checkChoice.addEventListener("click", function () {
-    //         let userSelect = checkChoice.innerText
-    //         console.log(userSelect);
-    //         if (userSelect === questions[questionIndex].rightChoice) {
-    //             score++;
-    //             console.log(score);
-    //             alert("You are correct! The answer is 'Alerts'");
-    //             questionIndex++;
-    //         } else {
-    //             count = count - 10;
-    //         }
-    //     })
-    // })
+    // click event for choice(s) to check answer
+    document.querySelectorAll(".choice-button").forEach(function (checkChoice) {
+        console.log(checkChoice);
+        checkChoice.addEventListener("click", function () {
+            let userSelect = checkChoice.innerText
+            console.log(userSelect);
+            if (userSelect === questions[questionIndex].rightChoice) {
+                score++;
+                console.log(score);
+                alert("You are correct! The answer is 'Alerts'");
+                questionIndex++;
+            } else {
+                count = count - 10;
+            }
+        })
+    })
 }
 
 
