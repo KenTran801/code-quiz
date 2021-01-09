@@ -1,6 +1,5 @@
 // variables
 var questionIndex = 0;
-
 var score = 0;
 var remainTimeEl = document.querySelector("#remainTime");
 var startQuizEl = document.querySelector("#startQuiz");
@@ -9,6 +8,7 @@ var quizChoicesEl = document.querySelector("#quizChoices");
 var storeScoreEl = document.querySelector("#storeScores");
 var scoreBoardEl = document.querySelector("#scoreBoard");
 var resultDisplayEl = document.querySelector("#resultDisplay");
+var completedEl = document.querySelector("#completed");
 var buttonEl = document.createElement("div");
 
 // Create questions for the quiz
@@ -43,7 +43,7 @@ var questions = [
         rightChoice: "Console log"
     },
 ];
-
+// timer length per question
 var count = questions.length * 15;
 // Add eventlistener to start button
 startQuizEl.addEventListener("click", function () {
@@ -72,7 +72,7 @@ function genQuizQuestions() {
         var userChoices = questions[questionIndex].choices;
         quizQuestionsEl.innerHTML = "<h4>" + userQuestion + "</h4>";
         // quizChoicesEl.innerHTML = "<li>" + userChoices + "</li>";
-        
+
     }
     // creating buttons and popualting with question choices
     userChoices.forEach(function (newItem) {
@@ -86,29 +86,49 @@ function genQuizQuestions() {
     })
     // click event to check answer for each button
     document.querySelectorAll(".choice-button").forEach(function (checkChoice) {
-        console.log(checkChoice);
+        // console.log(checkChoice);
         checkChoice.addEventListener("click", function () {
             let userSelect = checkChoice.innerText
-            console.log(userSelect);
+            // console.log(userSelect);
             // correct answer will display message and move to the new question/choices
             if (userSelect === questions[questionIndex].rightChoice) {
-                score++;
-                console.log(score);
+                // score++;
+                // console.log(score);
                 // figure out how to display message and not alert
                 // alert("You are correct!");
-                resultDisplayEl.textContent = ("Correct!");
+                resultDisplayEl.textContent = ("The previous answer was correct!");
                 questionIndex++;
                 genQuizQuestions();
             } else {
                 count = count - 10;
-                resultDisplayEl.textContent = ("Incorrect, please try again.");
+                resultDisplayEl.textContent = ("The previous answer was incorrect.");
                 questionIndex++;
                 genQuizQuestions();
             }
+            // not working when using >= question.length
+            // if (questionIndex >= 4) {
+            //     quizChoicesEl.innerHTML = "";
+            //     quizQuestionsEl.innerHTML = "";
+            //     resultDisplayEl.innerHTML = "";
+            //     completedEl.textContent = ("Completed");
+            // }
         })
     })
+    if (questionIndex >= 4) {
+        quizChoicesEl.innerHTML = "";
+        quizQuestionsEl.innerHTML = "";
+        resultDisplayEl.innerHTML = "";
+        completedEl.textContent = ("Completed");
+    }
 }
-
+// function completed() {
+//     if (questionIndex >= 4) {
+//         quizChoicesEl.innerHTML = "";
+//         quizQuestionsEl.innerHTML = "";
+//         resultDisplayEl.innerHTML = "";
+//         completedEl.textContent = ("Completed");
+//     }
+// }
 
 // reccomended
 // this static and determined by dev before someone plays
