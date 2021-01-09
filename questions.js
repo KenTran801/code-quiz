@@ -1,6 +1,6 @@
 // variables
 var questionIndex = 0;
-var count = 5;
+var count = 80;
 var score = 0;
 var remainTimeEl = document.querySelector("#remainTime");
 var startQuizEl = document.querySelector("#startQuiz");
@@ -9,6 +9,7 @@ var quizChoicesEl = document.querySelector("#quizChoices");
 var storeScoreEl = document.querySelector("#storeScores");
 var scoreBoardEl = document.querySelector("#scoreBoard");
 var buttonEl = document.createElement("div");
+
 // Create questions for the quiz
 var questions = [
     {
@@ -54,7 +55,7 @@ function startTimer() {
     var timer = setInterval(function () {
         count--;
         remainTimeEl.textContent = "Time remaining = " + count + " seconds";
-        if (count === 0) {
+        if (count == 0) {
             clearInterval(timer);
             remainTimeEl.textContent = "Time remaining =  Time is up!";
         }
@@ -80,18 +81,24 @@ function genQuizQuestions() {
         quizChoicesEl.appendChild(buttonEl);
         buttonEl.appendChild(buttonItem);
     })
-    
-    // click event for choice(s)
-    document.querySelectorAll(".choice-button").forEach(function (element) {
-        console.log(element);
-        element.addEventListener("click", function () {
-            let userChose = element.innerText
-            console.log(userChose);
-        })
-    })
+
+    // // click event for choice(s) to check answer
+    // document.querySelectorAll(".choice-button").forEach(function (checkChoice) {
+    //     // console.log(checkChoice);
+    //     checkChoice.addEventListener("click", function () {
+    //         let userSelect = checkChoice.innerText
+    //         console.log(userSelect);
+    //         if (userSelect === questions[questionIndex].rightChoice) {
+    //             score++;
+    //             console.log(score);
+    //             alert("You are correct! The answer is 'Alerts'");
+    //             questionIndex++;
+    //         } else {
+    //             count = count - 10;
+    //         }
+    //     })
+    // })
 }
-
-
 
 
 // reccomended
