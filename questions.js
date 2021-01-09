@@ -79,46 +79,41 @@ function genQuizQuestions() {
         buttonItem.setAttribute("class", "choice-button");
         buttonItem.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
         buttonItem.textContent = newItem;
-        // console.log(buttonItem);
         quizChoicesEl.appendChild(buttonEl);
         buttonEl.appendChild(buttonItem);
     })
     // click event to check answer for each button
     document.querySelectorAll(".choice-button").forEach(function (checkChoice) {
-        // console.log(checkChoice);
         checkChoice.addEventListener("click", function () {
             let userSelect = checkChoice.innerText
-            // console.log(userSelect);
-            // correct answer will display message and move to the new question/choices
             if (userSelect === questions[questionIndex].rightChoice) {
-                // score++;
-                // console.log(score);
-                // figure out how to display message and not alert
-                // alert("You are correct!");
                 resultDisplayEl.textContent = ("The previous answer was correct!");
                 questionIndex++;
-                genQuizQuestions();
+                // genQuizQuestions();
             } else {
                 count = count - 10;
                 resultDisplayEl.textContent = ("The previous answer was incorrect.");
                 questionIndex++;
-                genQuizQuestions();
+                // genQuizQuestions();
             }
             // not working when using >= questions.length
-            if (questionIndex >= 4) {
+            if (questionIndex >= questions.length) {
                 quizChoicesEl.innerHTML = "";
                 quizQuestionsEl.innerHTML = "";
                 resultDisplayEl.innerHTML = "";
                 completedEl.textContent = ("Quiz has been completed!");
-            }    
-            if (timer >= 0) {
-                score = timer;
-                var createP = document.createElement("p");
-                createP.setAttribute("id", "createP");
-                clearInterval(holdInteral);
-                createP.textContent = ("Your final score is: " + score);
-                completedEl.appendChild(createP);
+            }   else {
+                genQuizQuestions();
             }
+            
+            // if (timer >= 0) {
+            //     score = timer;
+            //     var createP = document.createElement("p");
+            //     createP.setAttribute("id", "createP");
+            //     clearInterval(holdInteral);
+            //     createP.textContent = ("Your final score is: " + score);
+            //     completedEl.appendChild(createP);
+            // }
         })
     })
 }
