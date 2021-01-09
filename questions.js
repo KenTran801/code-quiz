@@ -1,6 +1,6 @@
 // variables
 var questionIndex = 0;
-var count = 80;
+
 var score = 0;
 var remainTimeEl = document.querySelector("#remainTime");
 var startQuizEl = document.querySelector("#startQuiz");
@@ -8,6 +8,7 @@ var quizQuestionsEl = document.querySelector("#quizQuestions");
 var quizChoicesEl = document.querySelector("#quizChoices");
 var storeScoreEl = document.querySelector("#storeScores");
 var scoreBoardEl = document.querySelector("#scoreBoard");
+var resultDisplayEl = document.querySelector("#resultDisplay");
 var buttonEl = document.createElement("div");
 
 // Create questions for the quiz
@@ -43,7 +44,7 @@ var questions = [
     },
 ];
 
-
+var count = questions.length * 15;
 // Add eventlistener to start button
 startQuizEl.addEventListener("click", function () {
     startTimer()
@@ -62,40 +63,47 @@ function startTimer() {
     }, 1000)
 }
 function genQuizQuestions() {
-    // clear data
+    // clear data from page
     startScreen.innerHTML = "";
-    buttonEl.innerHTML = ""
+    buttonEl.innerHTML = "";
+    // loop to pull in questions and choices
     for (var i = 0; i < questions.length; i++) {
-
         var userQuestion = questions[questionIndex].questionText;
         var userChoices = questions[questionIndex].choices;
         quizQuestionsEl.innerHTML = "<h4>" + userQuestion + "</h4>";
         // quizChoicesEl.innerHTML = "<li>" + userChoices + "</li>";
-
+        
     }
+    // creating buttons and popualting with question choices
     userChoices.forEach(function (newItem) {
         var buttonItem = document.createElement("button");
         buttonItem.setAttribute("class", "choice-button");
-        buttonItem.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px")
+        buttonItem.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
         buttonItem.textContent = newItem;
         // console.log(buttonItem);
         quizChoicesEl.appendChild(buttonEl);
         buttonEl.appendChild(buttonItem);
     })
-
-    // click event for choice(s) to check answer
+    // click event to check answer for each button
     document.querySelectorAll(".choice-button").forEach(function (checkChoice) {
         console.log(checkChoice);
         checkChoice.addEventListener("click", function () {
             let userSelect = checkChoice.innerText
             console.log(userSelect);
+            // correct answer will display message and move to the new question/choices
             if (userSelect === questions[questionIndex].rightChoice) {
                 score++;
                 console.log(score);
-                alert("You are correct! The answer is 'Alerts'");
+                // figure out how to display message and not alert
+                // alert("You are correct!");
+                resultDisplayEl.textContent = ("Correct!");
                 questionIndex++;
+                genQuizQuestions();
             } else {
                 count = count - 10;
+                resultDisplayEl.textContent = ("Incorrect, please try again.");
+                questionIndex++;
+                genQuizQuestions();
             }
         })
     })
