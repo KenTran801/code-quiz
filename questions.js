@@ -72,7 +72,6 @@ function genQuizQuestions() {
         var userChoices = questions[questionIndex].choices;
         quizQuestionsEl.innerHTML = "<h4>" + userQuestion + "</h4>";
         // quizChoicesEl.innerHTML = "<li>" + userChoices + "</li>";
-
     }
     // creating buttons and popualting with question choices
     userChoices.forEach(function (newItem) {
@@ -105,22 +104,30 @@ function genQuizQuestions() {
                 questionIndex++;
                 genQuizQuestions();
             }
-            // not working when using >= question.length
-            // if (questionIndex >= 4) {
-            //     quizChoicesEl.innerHTML = "";
-            //     quizQuestionsEl.innerHTML = "";
-            //     resultDisplayEl.innerHTML = "";
-            //     completedEl.textContent = ("Completed");
-            // }
+            // not working when using >= questions.length
+            if (questionIndex >= 4) {
+                quizChoicesEl.innerHTML = "";
+                quizQuestionsEl.innerHTML = "";
+                resultDisplayEl.innerHTML = "";
+                completedEl.textContent = ("Quiz has been completed!");
+            }    
+            if (timer >= 0) {
+                score = timer;
+                var createP = document.createElement("p");
+                createP.setAttribute("id", "createP");
+                clearInterval(holdInteral);
+                createP.textContent = ("Your final score is: " + score);
+                completedEl.appendChild(createP);
+            }
         })
     })
-    if (questionIndex >= 4) {
-        quizChoicesEl.innerHTML = "";
-        quizQuestionsEl.innerHTML = "";
-        resultDisplayEl.innerHTML = "";
-        completedEl.textContent = ("Completed");
-    }
 }
+// if (questionIndex >= 4) {
+//     quizChoicesEl.innerHTML = "";
+//     quizQuestionsEl.innerHTML = "";
+//     resultDisplayEl.innerHTML = "";
+//     completedEl.textContent = ("Quiz has been completed");
+// }
 // function completed() {
 //     if (questionIndex >= 4) {
 //         quizChoicesEl.innerHTML = "";
