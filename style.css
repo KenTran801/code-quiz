@@ -1,11 +1,12 @@
-/* #container {
+/* .container {
     position: absolute;
     left: 30%;
     top: 10%;
     width: 500px;
+    border: 5px solid black
 }
 
-#startQuiz {
+.startQuiz {
     background-color: blue;
     margin-left: 33%;
     padding: 10px 30px;

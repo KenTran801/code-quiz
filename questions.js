@@ -1,16 +1,14 @@
 // variables
 var questionIndex = 0;
 var count = 5;
-var score = 0; 
-
+var score = 0;
 var remainTimeEl = document.querySelector("#remainTime");
 var startQuizEl = document.querySelector("#startQuiz");
 var quizQuestionsEl = document.querySelector("#quizQuestions");
 var quizChoicesEl = document.querySelector("#quizChoices");
 var storeScoreEl = document.querySelector("#storeScores");
 var scoreBoardEl = document.querySelector("#scoreBoard");
-
-
+var buttonEl = document.createElement("div");
 // Create questions for the quiz
 var questions = [
     {
@@ -46,16 +44,14 @@ var questions = [
 
 
 // Add eventlistener to start button
-startQuizEl.addEventListener("click", function() {
+startQuizEl.addEventListener("click", function () {
     startTimer()
     genQuizQuestions()
 });
 
-
 // function for timer to countdown to 0
-
 function startTimer() {
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
         count--;
         remainTimeEl.textContent = "Time remaining = " + count + " seconds";
         if (count === 0) {
@@ -64,28 +60,38 @@ function startTimer() {
         }
     }, 1000)
 }
-
 function genQuizQuestions() {
     // clear data
     startScreen.innerHTML = "";
+    buttonEl.innerHTML = ""
+    for (var i = 0; i < questions.length; i++) {
 
-    for (var index = 0; index < questions.length; index++) {
-        
         var userQuestion = questions[questionIndex].questionText;
         var userChoices = questions[questionIndex].choices;
         quizQuestionsEl.innerHTML = "<h4>" + userQuestion + "</h4>";
-        quizChoicesEl.innerHTML = "<li>" + userChoices + "</li>";
-  
+        // quizChoicesEl.innerHTML = "<li>" + userChoices + "</li>";
+
     }
-
-
+    userChoices.forEach(function (newItem) {
+        var buttonItem = document.createElement("button");
+        buttonItem.setAttribute("class", "choice-button");
+        buttonItem.textContent = newItem;
+        // console.log(buttonItem);
+        quizChoicesEl.appendChild(buttonEl);
+        buttonEl.appendChild(buttonItem);
+    })
     
-    // Possibly might work??? Question for tutor on Friday
-
-    // var currentQuestion = questions[questionIndex];
-    // quizQuestionsEl.innerHTML = "<h2>" + currentQuestion.questionText + "</h2>";
-    // quizQuestionsEl.createElement("Button")
+    // click event for choice(s)
+    document.querySelectorAll(".choice-button").forEach(function (element) {
+        console.log(element);
+        element.addEventListener("click", function () {
+            let userChose = element.innerText
+            console.log(userChose);
+        })
+    })
 }
+
+
 
 
 // reccomended
