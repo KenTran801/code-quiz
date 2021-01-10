@@ -1,6 +1,6 @@
 // variables
 var questionIndex = 0;
-var score = 0;
+var correctAnswer = 0;
 var remainTimeEl = document.querySelector("#remainTime");
 var startQuizEl = document.querySelector("#startQuiz");
 var quizQuestionsEl = document.querySelector("#quizQuestions");
@@ -43,25 +43,35 @@ var questions = [
         rightChoice: "Console log"
     },
 ];
-// timer length per question
+// timer code setup
 var count = questions.length * 15;
-// Add eventlistener to start button
-startQuizEl.addEventListener("click", function () {
-    startTimer()
-    genQuizQuestions()
-});
-
-// function for timer to countdown to 0
-function startTimer() {
-    var timer = setInterval(function () {
+var quizStarted = false;
+var timer = setInterval(function () {
+    if (quizStarted) {
         count--;
         remainTimeEl.textContent = "Time remaining = " + count + " seconds";
         if (count <= 0) {
             clearInterval(timer);
-            remainTimeEl.textContent = "Time remaining =  Time is up!";
+            quizChoicesEl.innerHTML = "";
+            quizQuestionsEl.innerHTML = "";
+            resultDisplayEl.innerHTML = "";
+            remainTimeEl.textContent = "Time remaining =  Time is up!";
+            completedEl.textContent = ("Sorry you have ran out of time! You answered " + correctAnswer + " question(s) correctly!");
+            clearInterval(timer);
+            score = count;
+            var createP = document.createElement("p");
+            createP.setAttribute("id", "createP");
+            createP.textContent = ("Your final score is: " + score);
+            completedEl.appendChild(createP);
         }
-    }, 1000)
-}
+    }
+}, 1000)
+// Add eventlistener to start button
+startQuizEl.addEventListener("click", function () {
+    quizStarted = true;
+    genQuizQuestions()
+});
+
 function genQuizQuestions() {
     // clear data from page
     startScreen.innerHTML = "";
@@ -70,8 +80,7 @@ function genQuizQuestions() {
     for (var i = 0; i < questions.length; i++) {
         var userQuestion = questions[questionIndex].questionText;
         var userChoices = questions[questionIndex].choices;
-        quizQuestionsEl.innerHTML = "<h4>" + userQuestion + "</h4>";
-        // quizChoicesEl.innerHTML = "<li>" + userChoices + "</li>";
+        quizQuestionsEl.innerHTML = userQuestion;
     }
     // creating buttons and popualting with question choices
     userChoices.forEach(function (newItem) {
@@ -88,49 +97,31 @@ function genQuizQuestions() {
             let userSelect = checkChoice.innerText
             if (userSelect === questions[questionIndex].rightChoice) {
                 resultDisplayEl.textContent = ("The previous answer was correct!");
+                correctAnswer++
                 questionIndex++;
-                // genQuizQuestions();
             } else {
                 count = count - 10;
                 resultDisplayEl.textContent = ("The previous answer was incorrect.");
                 questionIndex++;
-                // genQuizQuestions();
             }
-            // not working when using >= questions.length
             if (questionIndex >= questions.length) {
                 quizChoicesEl.innerHTML = "";
                 quizQuestionsEl.innerHTML = "";
                 resultDisplayEl.innerHTML = "";
-                completedEl.textContent = ("Quiz has been completed!");
-            }   else {
+                remainTimeEl.innerHTML = "";
+                completedEl.textContent = ("Quiz has been completed! You answered " + correctAnswer + " question(s) correctly!");
+                clearInterval(timer);
+                score = count;
+                var createP = document.createElement("p");
+                createP.setAttribute("id", "createP");
+                createP.textContent = ("Your final score is: " + score);
+                completedEl.appendChild(createP);
+            } else {
                 genQuizQuestions();
             }
-            
-            // if (timer >= 0) {
-            //     score = timer;
-            //     var createP = document.createElement("p");
-            //     createP.setAttribute("id", "createP");
-            //     clearInterval(holdInteral);
-            //     createP.textContent = ("Your final score is: " + score);
-            //     completedEl.appendChild(createP);
-            // }
         })
     })
 }
-// if (questionIndex >= 4) {
-//     quizChoicesEl.innerHTML = "";
-//     quizQuestionsEl.innerHTML = "";
-//     resultDisplayEl.innerHTML = "";
-//     completedEl.textContent = ("Quiz has been completed");
-// }
-// function completed() {
-//     if (questionIndex >= 4) {
-//         quizChoicesEl.innerHTML = "";
-//         quizQuestionsEl.innerHTML = "";
-//         resultDisplayEl.innerHTML = "";
-//         completedEl.textContent = ("Completed");
-//     }
-// }
 
 // reccomended
 // this static and determined by dev before someone plays
