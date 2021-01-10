@@ -11,7 +11,7 @@ Code Quiz features:
 
 ## Links
 
-Link to repository on GitHub: https://github.com/KenTran801/responsive-portfolio
+Link to repository on GitHub: https://github.com/KenTran801/code-quiz
 
 Link to the deployed link: https://kentran801.github.io/code-quiz/
 
