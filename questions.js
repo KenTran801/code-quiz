@@ -59,12 +59,18 @@ var timer = setInterval(function () {
             resultDisplayEl.innerHTML = "";
             remainTimeEl.textContent = "Time remaining =  Time is up!";
             completedEl.textContent = ("Sorry you have ran out of time! You answered " + correctAnswer + " question(s) correctly!");
-            clearInterval(timer);
-            score = count;
-            var scoreInfo = document.createElement("p");
-            scoreInfo.setAttribute("id", "scoreInfo");
-            scoreInfo.textContent = ("Your final score is: " + score);
-            completedEl.appendChild(scoreInfo);
+            
+            var retryBtn = document.createElement("button");
+            retryBtn.setAttribute("class", "choice-button");
+            retryBtn.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
+            retryBtn.textContent ="Try Again!";
+            completedEl.appendChild(retryBtn);
+            // clearInterval(timer);
+            // score = count;
+            // var scoreInfo = document.createElement("h3");
+            // scoreInfo.setAttribute("id", "scoreInfo");
+            // scoreInfo.textContent = ("Your final score is: " + score);
+            // completedEl.appendChild(scoreInfo);
         }
     }
 }, 1000)
