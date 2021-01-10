@@ -12,7 +12,6 @@ var resultDisplayEl = document.querySelector("#resultDisplay");
 var completedEl = document.querySelector("#completed");
 var enterNameEl = document.querySelector("#enterName");
 var buttonEl = document.createElement("div");
-
 // Create questions for the quiz pulled from demo gif
 var questions = [
     {

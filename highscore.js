@@ -19,7 +19,7 @@ var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
 // put names and scores into list
 if (highScores !== "") {
     // sort function to rank the scores from highest to lowest, shoutout to BCS learning for the help
-    highScores.sort(function(a, b) {
+    highScores.sort(function (a, b) {
         return parseInt(b.score) - parseInt(a.score);
     });
     // loop to pull in scores/names
