@@ -1,6 +1,7 @@
 // variables
 var questionIndex = 0;
 var correctAnswer = 0;
+var score = 0;
 var remainTimeEl = document.querySelector("#remainTime");
 var startQuizEl = document.querySelector("#startQuiz");
 var quizQuestionsEl = document.querySelector("#quizQuestions");
@@ -72,7 +73,7 @@ startQuizEl.addEventListener("click", function () {
     quizStarted = true;
     genQuizQuestions()
 });
-
+// function to generate questions/choices
 function genQuizQuestions() {
     // clear data from page
     startScreen.innerHTML = "";
@@ -96,46 +97,64 @@ function genQuizQuestions() {
     document.querySelectorAll(".choice-button").forEach(function (checkChoice) {
         checkChoice.addEventListener("click", function () {
             let userSelect = checkChoice.innerText
+            // if user seelcts correctly
             if (userSelect === questions[questionIndex].rightChoice) {
                 resultDisplayEl.textContent = ("The previous answer was correct!");
                 correctAnswer++
                 questionIndex++;
-            } else {
+            } 
+            // if user selects incorrectly
+            else {
                 count = count - 10;
                 resultDisplayEl.textContent = ("The previous answer was incorrect.");
                 questionIndex++;
             }
+            // When all questions have been answered
             if (questionIndex >= questions.length) {
-
+                // clear all elements (check with TA or Tutor to see if there is a simpler way)
                 quizChoicesEl.innerHTML = "";
                 quizQuestionsEl.innerHTML = "";
                 resultDisplayEl.innerHTML = "";
                 remainTimeEl.innerHTML = "";
-
+                // new element to quiz conclusion
                 completedEl.textContent = ("Quiz has been completed! You answered " + correctAnswer + " question(s) correctly!");
-
+                // stop the timer count and display users final score
                 clearInterval(timer);
                 score = count;
                 var scoreInfo = document.createElement("h3");
                 scoreInfo.setAttribute("id", "scoreInfo");
                 scoreInfo.setAttribute("style", "color: green");
-                scoreInfo.textContent = ("Your final score is: " + score);
+                scoreInfo.textContent = ("Final Score is: " + score);
                 completedEl.append(scoreInfo);
-
+                // field for user to input in name or initials
                 enterNameEl.textContent = ("Please enter in your name or initials: ");
-
                 var input = document.createElement("input");
                 input.setAttribute("id", "input");
                 input.setAttribute("type", "text");
                 input.textContent = "";
                 enterNameEl.appendChild(input);
-
+                // button to submit name or initials
                 var submitBtn = document.createElement("button");
                 submitBtn.setAttribute("class", "choice-button");
                 submitBtn.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
                 submitBtn.textContent ="Submit";
                 enterNameEl.appendChild(submitBtn);
-                
+                // event listener submit button to store names in local storage
+                submitBtn.addEventListener("click", function () {
+                    var name = input.value;
+                    if (name === "") {
+                        console.log("No input submitted.")
+                    }else {
+                        var userScore = {
+                            score: score,
+                            name: name
+                        };
+                        console.log(userScore);
+                    }
+                })
+
+
+
             } else {
                 genQuizQuestions();
             }
