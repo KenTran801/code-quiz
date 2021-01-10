@@ -59,18 +59,12 @@ var timer = setInterval(function () {
             resultDisplayEl.innerHTML = "";
             remainTimeEl.textContent = "Time remaining =  Time is up!";
             completedEl.textContent = ("Sorry you have ran out of time! You answered " + correctAnswer + " question(s) correctly!");
-            
+            // button for user to re-attempt survey if timer = 0
             var retryBtn = document.createElement("button");
             retryBtn.setAttribute("class", "choice-button");
             retryBtn.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
             retryBtn.textContent ="Try Again!";
             completedEl.appendChild(retryBtn);
-            // clearInterval(timer);
-            // score = count;
-            // var scoreInfo = document.createElement("h3");
-            // scoreInfo.setAttribute("id", "scoreInfo");
-            // scoreInfo.textContent = ("Your final score is: " + score);
-            // completedEl.appendChild(scoreInfo);
         }
     }
 }, 1000)
@@ -99,7 +93,7 @@ function genQuizQuestions() {
         quizChoicesEl.appendChild(buttonEl);
         buttonEl.appendChild(buttonItem);
     })
-    // click event to check answer for each button
+    // click event to check answer for each button, was able to get the code to work after working with tutor
     document.querySelectorAll(".choice-button").forEach(function (checkChoice) {
         checkChoice.addEventListener("click", function () {
             let userSelect = checkChoice.innerText
@@ -115,7 +109,7 @@ function genQuizQuestions() {
                 resultDisplayEl.textContent = ("The previous answer was incorrect.");
                 questionIndex++;
             }
-            // When all questions have been answered
+            // When all questions have been answered conclude quiz, scores, etc.
             if (questionIndex >= questions.length) {
                 // clear all elements (check with TA or Tutor to see if there is a simpler way)
                 quizChoicesEl.innerHTML = "";
@@ -160,33 +154,10 @@ function genQuizQuestions() {
                 })
 
 
-
+            // if all questions are not answwered keep generating questions (was able to resovle issue with BCS support assistant)
             } else {
                 genQuizQuestions();
             }
         })
     })
 }
-
-// reccomended
-// this static and determined by dev before someone plays
-// var questions = [
-// 	{
-// 		question: 'what color is the sun?',
-// 		choices: ['blue', 'yellow', 'red'],
-// 		rightChoice: 'yellow'
-// 	},
-// 	{
-// 		question: 'what color is the moon?',
-// 		choices: ['blue', 'yellow', 'white'],
-// 		rightChoice: 'white'
-// 	}
-// ]
-// this would happen on click - inputFromUser is dynamic - we don't know what it will be
-// var inputFromUser = 'yellow'
-// if(inputFromUser === questions[0].rightChoice){
-// 	console.log('it does match');
-// } else {
-// 	console.log('no match');
-// }
-// document.querySelector('.container').innerHTML = questions[0].question
