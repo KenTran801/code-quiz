@@ -32,9 +32,3 @@ if (highScores !== "") {
     };
 
 }
-
-// Using previous for loop for reference
-// for (var i = 0; i < questions.length; i++) {
-//     var userQuestion = questions[questionIndex].questionText;
-//     var userChoices = questions[questionIndex].choices;
-//     quizQuestionsEl.innerHTML = userQuestion;
