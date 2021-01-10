@@ -3,16 +3,32 @@ var returnQuizEl = document.querySelector("#returnQuiz");
 var clearScoreEl = document.querySelector("#clearScores");
 var highscoreEl = document.querySelector("#display-highscores");
 
-// var highscores= JSON.parse(window.localStorage.getItem("highscores")) || [];
-
-// highscoreEl.appendChild(highscores);
-
 // re-directs user to the index.html
 returnQuizEl.addEventListener("click", function () {
     window.location.href = "index.html";
 });
 //event listener for clear button to clear scores
 clearScoreEl.addEventListener("click", function () {
+    highscoreEl.innerHTML = "";
     window.localStorage.clear();
     window.localStorage.reload();
 });
+// retrieve scores and names
+var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+
+// put names and scores into list
+if (highScores !== "") {
+    for (let i = 0; i < highScores.length; i++) {
+        var listCreate = document.createElement("li");
+        listCreate.setAttribute("class", "listCreate");
+        listCreate.setAttribute("style", "font-weight: bold; padding: 5px")
+        listCreate.textContent = highScores[i].name + " " + highScores[i].score;
+        highscoreEl.appendChild(listCreate);
+    }
+}
+
+// Using previous for loop for reference
+// for (var i = 0; i < questions.length; i++) {
+//     var userQuestion = questions[questionIndex].questionText;
+//     var userChoices = questions[questionIndex].choices;
+//     quizQuestionsEl.innerHTML = userQuestion;

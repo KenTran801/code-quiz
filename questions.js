@@ -130,7 +130,7 @@ function genQuizQuestions() {
                 scoreInfo.textContent = ("Final Score is: " + score);
                 completedEl.appendChild(scoreInfo);
                 // field for user to input in name or initials
-                enterNameEl.textContent = ("Please enter in your name or initials: ");
+                enterNameEl.textContent = ("Please enter in your initials: ");
                 var input = document.createElement("input");
                 input.setAttribute("id", "input");
                 input.setAttribute("type", "text");
@@ -143,16 +143,16 @@ function genQuizQuestions() {
                 submitBtn.textContent = "Submit";
                 enterNameEl.appendChild(submitBtn);
                 // event listener submit button to store names in local storage
-                submitBtn.addEventListener("click", function saveHighscore() {
+                submitBtn.addEventListener("click", function () {
                     // get value from input field and trim
                     var name = input.value.trim();
                     // verify field is not blank
                     if (name === "") {
-                        alert("Name/initial field cannot be blank!")
+                        alert("Field cannot be blank!")
                         return false;
                     } else {
                         // retrieve saved scores from locale storage or empty array
-                        var highScores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+                        var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
                         // new score for current user
                         var userScore = {
                             score: score,
@@ -160,6 +160,7 @@ function genQuizQuestions() {
                         };
                         //save current user score to locale storage
                         highScores.push(userScore);
+                        console.log(highScores);
                         window.localStorage.setItem("highScores", JSON.stringify(highScores));
                     }
                     // re-direct user to the highcore page
