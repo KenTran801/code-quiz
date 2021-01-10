@@ -16,3 +16,4 @@ Link to repository on GitHub: https://github.com/KenTran801/code-quiz
 Link to the deployed link: https://kentran801.github.io/code-quiz/
 
 ## Video Demo
+![code-quiz](https://user-images.githubusercontent.com/72709180/104137548-e3445380-535a-11eb-885b-e7fa2fe77058.gif)
