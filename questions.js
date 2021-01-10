@@ -9,6 +9,7 @@ var storeScoreEl = document.querySelector("#storeScores");
 var scoreBoardEl = document.querySelector("#scoreBoard");
 var resultDisplayEl = document.querySelector("#resultDisplay");
 var completedEl = document.querySelector("#completed");
+var enterNameEl = document.querySelector("#enterName");
 var buttonEl = document.createElement("div");
 
 // Create questions for the quiz
@@ -105,17 +106,36 @@ function genQuizQuestions() {
                 questionIndex++;
             }
             if (questionIndex >= questions.length) {
+
                 quizChoicesEl.innerHTML = "";
                 quizQuestionsEl.innerHTML = "";
                 resultDisplayEl.innerHTML = "";
                 remainTimeEl.innerHTML = "";
+
                 completedEl.textContent = ("Quiz has been completed! You answered " + correctAnswer + " question(s) correctly!");
+
                 clearInterval(timer);
                 score = count;
-                var createP = document.createElement("p");
-                createP.setAttribute("id", "createP");
-                createP.textContent = ("Your final score is: " + score);
-                completedEl.appendChild(createP);
+                var scoreInfo = document.createElement("h3");
+                scoreInfo.setAttribute("id", "scoreInfo");
+                scoreInfo.setAttribute("style", "color: green");
+                scoreInfo.textContent = ("Your final score is: " + score);
+                completedEl.append(scoreInfo);
+
+                enterNameEl.textContent = ("Please enter in your name or initials: ");
+
+                var input = document.createElement("input");
+                input.setAttribute("id", "input");
+                input.setAttribute("type", "text");
+                input.textContent = "";
+                enterNameEl.appendChild(input);
+
+                var submitBtn = document.createElement("button");
+                submitBtn.setAttribute("class", "choice-button");
+                submitBtn.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
+                submitBtn.textContent ="Submit";
+                enterNameEl.appendChild(submitBtn);
+                
             } else {
                 genQuizQuestions();
             }
