@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
+<!-- nav bar -->
 <body class="p-5 mb-2 bg-secondary">
   <header class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
     <span class="navbar-brand font-weight-bold">Coding Quiz</span>
@@ -32,35 +32,27 @@
       </ul>
     </nav>
   </header>
-
+  <!-- main quiz content -->
   <main class="jumbotron container my-5">
-    <!-- <div class="navbar-text font-weight-bold text-warning" id="remainTime">
-      Time Remaining: 80 seconds
-    </div> -->
     <div id="startScreen">
       <h1 class="display-3 text-center">Coding Quiz Challenge</h1>
       <hr class="my-4">
       <section class="row">
         <section class="col-sm-12 text-center font-weight-bold">
-          <p> Try to answer the following code-related questions within the given time limit. Compete against others to see who gets the highest score! Keep in mind that
+          <p> Try to answer the following code-related questions within the given time limit. Compete against others to
+            see who gets the highest score! Keep in mind that
             incorrect answers will penalize your score/time by ten seconds! Good luck!
           </p>
           <button type="button" class="btn btn-primary btn-lg" id="startQuiz">Start Quiz</button>
         </section>
       </section>
     </div>
-
+    <!-- appear once the quiz begins, additional elements created in javascript -->
     <h2 class="font-weight-bold text-center" id="quizQuestions"></h2>
-
     <div class="text-center" id="quizChoices"></div>
-
-    <div class="text-center font-weight-bold" id="resultDisplay"></div>
-
+    <p class="text-center font-weight-bold" id="resultDisplay"></p>
     <h2 class="text-center" id="completed"></h2>
-   
     <h3 class="text-center" id="enterName"></h3>
-
-
   </main>
 
   <div id="storeScores"></div>

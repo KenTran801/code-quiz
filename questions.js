@@ -65,6 +65,9 @@ var timer = setInterval(function () {
             retryBtn.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
             retryBtn.textContent ="Try Again!";
             completedEl.appendChild(retryBtn);
+            retryBtn.addEventListener("click", function () {
+                window.location.href = "index.html";
+            })
         }
     }
 }, 1000)
@@ -141,19 +144,23 @@ function genQuizQuestions() {
                 enterNameEl.appendChild(submitBtn);
                 // event listener submit button to store names in local storage
                 submitBtn.addEventListener("click", function () {
-                    var name = input.value;
+                    var name = input.value.trim();
                     if (name === "") {
-                        console.log("No input submitted.")
+                        alert("Name/inital field cannot be blank.")
+                        return false;
                     }else {
+                        // console.log(userScore);
+                        var highScores= JSON.parse(window.localStorage.getItem("highscores")) || [];
                         var userScore = {
                             score: score,
                             name: name
                         };
-                        console.log(userScore);
+                        
+                        highScores.push(userScore);
+                        window.localStorage.setItem("highScores", JSON.stringify(highScores));
                     }
+                    window.location.href = "highscore.html";
                 })
-
-
             // if all questions are not answwered keep generating questions (was able to resovle issue with BCS support assistant)
             } else {
                 genQuizQuestions();
