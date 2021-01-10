@@ -144,21 +144,25 @@ function genQuizQuestions() {
                 enterNameEl.appendChild(submitBtn);
                 // event listener submit button to store names in local storage
                 submitBtn.addEventListener("click", function () {
+                    // get value from input field and trim
                     var name = input.value.trim();
+                    // verify field is not blank
                     if (name === "") {
                         alert("Name/inital field cannot be blank.")
                         return false;
                     }else {
-                        // console.log(userScore);
+                        // retrive saved scores from locale storage or empty array
                         var highScores= JSON.parse(window.localStorage.getItem("highscores")) || [];
+                        // new score for current user
                         var userScore = {
                             score: score,
                             name: name
-                        };
-                        
+                        };     
+                        //save current user score to locale storage
                         highScores.push(userScore);
                         window.localStorage.setItem("highScores", JSON.stringify(highScores));
                     }
+                    // re-direct user to the highcore page
                     window.location.href = "highscore.html";
                 })
             // if all questions are not answwered keep generating questions (was able to resovle issue with BCS support assistant)
