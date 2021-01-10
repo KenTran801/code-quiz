@@ -63,7 +63,7 @@ var timer = setInterval(function () {
             var retryBtn = document.createElement("button");
             retryBtn.setAttribute("class", "choice-button");
             retryBtn.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
-            retryBtn.textContent ="Try Again!";
+            retryBtn.textContent = "Try Again!";
             completedEl.appendChild(retryBtn);
             retryBtn.addEventListener("click", function () {
                 window.location.href = "index.html";
@@ -105,7 +105,7 @@ function genQuizQuestions() {
                 resultDisplayEl.textContent = ("The previous answer was correct!");
                 correctAnswer++
                 questionIndex++;
-            } 
+            }
             // if user selects incorrectly
             else {
                 count = count - 10;
@@ -138,26 +138,26 @@ function genQuizQuestions() {
                 enterNameEl.appendChild(input);
                 // button to submit name or initials
                 var submitBtn = document.createElement("button");
-                submitBtn.setAttribute("class", "choice-button");
+                submitBtn.setAttribute("class", "submit-button");
                 submitBtn.setAttribute("style", "background: #0275d8; padding: 10px; color: white; margin: 20px 10px; font-weight: bold")
-                submitBtn.textContent ="Submit";
+                submitBtn.textContent = "Submit";
                 enterNameEl.appendChild(submitBtn);
                 // event listener submit button to store names in local storage
-                submitBtn.addEventListener("click", function () {
+                submitBtn.addEventListener("click", function saveHighscore() {
                     // get value from input field and trim
                     var name = input.value.trim();
                     // verify field is not blank
                     if (name === "") {
-                        alert("Name/inital field cannot be blank.")
+                        alert("Name/initial field cannot be blank!")
                         return false;
-                    }else {
+                    } else {
                         // retrieve saved scores from locale storage or empty array
-                        var highScores= JSON.parse(window.localStorage.getItem("highscores")) || [];
+                        var highScores = JSON.parse(window.localStorage.getItem("highscores")) || [];
                         // new score for current user
                         var userScore = {
                             score: score,
                             name: name
-                        };     
+                        };
                         //save current user score to locale storage
                         highScores.push(userScore);
                         window.localStorage.setItem("highScores", JSON.stringify(highScores));
@@ -165,7 +165,7 @@ function genQuizQuestions() {
                     // re-direct user to the highcore page
                     window.location.href = "highscore.html";
                 })
-            // if all questions are not answwered keep generating questions (was able to resovle issue with BCS support assistant)
+                // if all questions are not answered keep generating questions (was able to resovle issue with BCS support assistant)
             } else {
                 genQuizQuestions();
             }
