@@ -13,7 +13,7 @@ var completedEl = document.querySelector("#completed");
 var enterNameEl = document.querySelector("#enterName");
 var buttonEl = document.createElement("div");
 
-// Create questions for the quiz
+// Create questions for the quiz pulled from demo gif
 var questions = [
     {
         questionText: "Question 1: Commonly used data types DO NOT include which of the following.",
@@ -61,10 +61,10 @@ var timer = setInterval(function () {
             completedEl.textContent = ("Sorry you have ran out of time! You answered " + correctAnswer + " question(s) correctly!");
             clearInterval(timer);
             score = count;
-            var createP = document.createElement("p");
-            createP.setAttribute("id", "createP");
-            createP.textContent = ("Your final score is: " + score);
-            completedEl.appendChild(createP);
+            var scoreInfo = document.createElement("p");
+            scoreInfo.setAttribute("id", "scoreInfo");
+            scoreInfo.textContent = ("Your final score is: " + score);
+            completedEl.appendChild(scoreInfo);
         }
     }
 }, 1000)
