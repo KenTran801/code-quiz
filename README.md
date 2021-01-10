@@ -1,6 +1,6 @@
 # Code Quiz
 
-Objective: Create a coding quiz with multiple-choice options and a countdown timer primarily using Javascript fundamentals
+Objective: Create a coding quiz with multiple-choice options and a countdown timer primarily using Javascript fundamentals.
 
 Code Quiz features:
 1. Timer will begin once the quiz begins, total time is 75 seconds.

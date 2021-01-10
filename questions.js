@@ -126,9 +126,9 @@ function genQuizQuestions() {
                 score = count;
                 var scoreInfo = document.createElement("h3");
                 scoreInfo.setAttribute("id", "scoreInfo");
-                scoreInfo.setAttribute("style", "color: green");
+                scoreInfo.setAttribute("style", "color: green; font-weight: bold; padding: 20px");
                 scoreInfo.textContent = ("Final Score is: " + score);
-                completedEl.append(scoreInfo);
+                completedEl.appendChild(scoreInfo);
                 // field for user to input in name or initials
                 enterNameEl.textContent = ("Please enter in your name or initials: ");
                 var input = document.createElement("input");
@@ -151,7 +151,7 @@ function genQuizQuestions() {
                         alert("Name/inital field cannot be blank.")
                         return false;
                     }else {
-                        // retrive saved scores from locale storage or empty array
+                        // retrieve saved scores from locale storage or empty array
                         var highScores= JSON.parse(window.localStorage.getItem("highscores")) || [];
                         // new score for current user
                         var userScore = {
