@@ -2,20 +2,18 @@
 var returnQuizEl = document.querySelector("#returnQuiz");
 var clearScoreEl = document.querySelector("#clearScores");
 var highscoreEl = document.querySelector("#display-highscores");
-
 // re-directs user to the index.html
 returnQuizEl.addEventListener("click", function () {
     window.location.href = "index.html";
 });
-//event listener for clear button to clear scores
+//event listener for clear button to clear scores in local storage and html
 clearScoreEl.addEventListener("click", function () {
     highscoreEl.innerHTML = "";
     window.localStorage.clear();
     window.localStorage.reload();
 });
-// retrieve scores and names
+// retrieve scores and names from local storage
 var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
-
 // put names and scores into list
 if (highScores !== "") {
     // sort function to rank the scores from highest to lowest, shoutout to BCS learning for the help

@@ -165,7 +165,7 @@ function genQuizQuestions() {
                     // re-direct user to the highcore page
                     window.location.href = "highscore.html";
                 })
-                // if all questions are not answered keep generating questions (was able to resovle issue with BCS support assistant)
+            // if all questions are not answered keep generating questions (was able to resovle issue with BCS support assistant)
             } else {
                 genQuizQuestions();
             }
