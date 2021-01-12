@@ -159,7 +159,6 @@ function genQuizQuestions() {
                         };
                         //save current user score to locale storage
                         highScores.push(userScore);
-                        console.log(highScores);
                         window.localStorage.setItem("highScores", JSON.stringify(highScores));
                     }
                     // re-direct user to the highcore page
