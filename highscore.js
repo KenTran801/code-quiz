@@ -9,7 +9,7 @@ returnQuizEl.addEventListener("click", function () {
 //event listener for clear button to clear scores in local storage and html
 clearScoreEl.addEventListener("click", function () {
     highscoreEl.innerHTML = "";
-    window.localStorage.clear();
+    localStorage.removeItem("highScores")
 });
 // retrieve scores and names from local storage
 var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
