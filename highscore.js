@@ -10,7 +10,6 @@ returnQuizEl.addEventListener("click", function () {
 clearScoreEl.addEventListener("click", function () {
     highscoreEl.innerHTML = "";
     window.localStorage.clear();
-    window.localStorage.reload();
 });
 // retrieve scores and names from local storage
 var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
